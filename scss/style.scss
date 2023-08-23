@@ -1,0 +1,617 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+$particles: 50;
+$width: 500;
+$height: 500;
+
+// Create the explosion...
+$box-shadow: ();
+$box-shadow2: ();
+@for $i from 0 through $particles {
+  $box-shadow: $box-shadow,
+               random($width)-$width / 2 + px
+               random($height)-$height / 1.2 + px
+               hsl(random(360), 100, 50);
+  $box-shadow2: $box-shadow2, 0 0 #fff
+}
+@mixin keyframes ($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animationName} {
+        @content;
+    }
+
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin animation-delay ($settings) {
+    -moz-animation-delay: $settings;
+    -webkit-animation-delay: $settings;
+    -o-animation-delay: $settings;
+    -ms-animation-delay: $settings;
+    animation-delay: $settings;
+}
+
+@mixin animation-duration ($settings) {
+    -moz-animation-duration: $settings;
+    -webkit-animation-duration: $settings;
+    -o-animation-duration: $settings;
+    -ms-animation-duration: $settings;
+    animation-duration: $settings;
+}
+
+@mixin animation ($settings) {
+    -moz-animation: $settings;
+    -webkit-animation: $settings;
+    -o-animation: $settings;
+    -ms-animation: $settings;
+    animation: $settings;
+}
+
+@mixin transform ($settings) {
+    transform: $settings;
+    -moz-transform: $settings;
+    -webkit-transform: $settings;
+    -o-transform: $settings;
+    -ms-transform: $settings;
+}
+
+body {
+  margin:0;
+  padding:0;
+  background: #000;
+  overflow: hidden;
+}
+
+#pyro{
+    display: none;
+
+}
+
+#indian_flag{
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    top: 28%;
+    display: none;
+    left: 83%;
+    background-size: cover;
+    background-position: 0%;
+    background-image: url("../images/indian_flgq.png");
+}
+
+.pyro > .before, .pyro > .after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: $box-shadow2;
+  @include animation((1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards));
+}
+    
+.pyro > .after {
+  @include animation-delay((1.25s, 1.25s, 1.25s));
+  @include animation-duration((1.25s, 1.25s, 6.25s));
+}
+        
+@include keyframes(bang) {
+  to {
+    box-shadow:$box-shadow;
+  }
+}
+    
+@include keyframes(gravity)  {
+  to {
+    @include transform(translateY(200px));
+    opacity: 0;
+  }
+}
+    
+@include keyframes(position) {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%;
+  }
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%;
+  }
+  40%, 59.9% {  
+    margin-top: 20%;
+    margin-left: 70%
+  }
+  60%, 79.9% {  
+    margin-top: 30%;
+    margin-left: 20%;
+  }
+  80%, 99.9% {  
+    margin-top: 30%;
+    margin-left: 80%;
+  }
+}
+
+
+@keyframes sat1{
+    from{
+        top: 60%;
+        left: 30%;
+    }to{
+        top: 60%;
+        left: 65%;
+        scale: 0;
+    }
+}
+
+@keyframes sat2{
+    from{
+        top: 70%;
+        left: 30%;
+    }to{
+        top: 60%;
+        left: 25%;
+        scale: 0;
+    }
+}
+
+@keyframes sat11 {
+    from{
+        top: 90%;
+        left: 50%;
+    }to{
+        top: 40%;
+        left: 45%;
+        scale: 0;
+    }
+    
+}
+
+@keyframes sat13 {
+    from{
+        top: 70%;
+        left: 30%;
+    }to{
+        top: 90%;
+        left: 45%;
+        scale: 0;
+    }
+    
+}
+
+
+@keyframes sat8 {
+    from{
+        top: 90%;
+        left: 55%;
+        scale: 0;
+    }to{
+        top: 50%;
+        left: 35%;
+        scale: 1;
+    }
+    
+}
+
+
+
+@keyframes sat12 {
+    from{
+        top: 70%;
+        left: 70%;
+    }to{
+        top: 90%;
+        left: 55%;
+        scale: 0;
+    }
+    
+}
+
+@keyframes sat3 {
+    from{
+        top: 50%;
+        left: 40%;
+    }to{
+        top: 90%;
+        left: 30%;
+        scale: 0;
+    }
+    
+}
+
+
+@keyframes sat5 {
+    from{
+        top: 70%;
+        left: 75%;
+    }to{
+        top: 80%;
+        left: 30%;
+        scale: 0;
+    }
+    
+}
+
+
+@keyframes sat4 {
+    from{
+        top: 80%;
+        left: 75%;
+    }to{
+        top: 80%;
+        left: 30%;
+        scale: 0;
+    }
+    
+}
+
+@keyframes sat7 {
+    from{
+        top: 45%;
+        left: 45%;
+    }to{
+        top: 90%;
+        left: 25%;
+        scale: 0;
+    }
+    
+}
+
+@keyframes rocket-lauched {
+    0%{
+        bottom: 50px;
+        left: 38.5rem;
+        scale: 0;
+        transform: rotate(50deg);
+    }
+    100%{
+        bottom: 20rem;
+        left: 80%;
+
+    }
+}
+
+@keyframes sat6 {
+    from{
+        top: 70%;
+        left: 25%;
+    }to{
+        top: 70%;
+        left: 60%;
+        scale: 0;
+    }
+    
+}
+
+@keyframes sat9 {
+    from{
+        top: 54%;
+        left: 60%;
+    }to{
+        top: 64%;
+        left: 49%;
+        scale: 0;
+    }
+    
+}
+
+
+@keyframes sat10 {
+    from{
+        top: 90%;
+        left: 50%;
+        scale: 0;
+    }to{
+        top: 50%;
+        left: 50%;
+        scale: 1;
+    }
+    
+}
+
+
+@keyframes sat15 {
+    from{
+        top: 50%;
+        left: 60%;
+    }to{
+        top: 50%;
+        left: 40%;
+        scale: 0;
+    }
+    
+}
+
+
+
+
+@keyframes identifier {
+    0%{
+        top: 50%;
+        left: 60%;
+
+    }
+    100%{
+        top: 93%;
+        left: 50%;
+    }
+    
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+html {
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(#050e20, #010f18, #02263a);
+}
+
+#load{
+    background-image: url("../images/rocket.png");
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.white{
+    color: white;
+    margin: 10px;
+}
+
+.space-station-position{
+    position: absolute;
+    top: 50%;
+    animation: identifier 90s infinite;
+    animation-timing-function: linear;
+    left: 60%;
+    transform: translate(-50%,-50%);
+}
+
+.space-station{
+    width: 10rem;
+    height: 5rem;
+}
+
+.load-img{
+    width: 10rem;
+    height: 10rem;
+    animation: shake 0.5s;
+
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+}
+
+
+.ground {
+
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    position: absolute;
+    left: 25%;
+    width: 50%;
+    z-index: -1;
+    bottom: 0;
+    height: 50%;
+    background-color: rgb(0, 54, 54);
+    background-image: linear-gradient(rgba(99, 196, 241, 0.295), rgba(128, 158, 154, 0.075), rgba(243, 243, 235, 0.055)), url("../images/india.png");
+    background-size: 25rem;
+    background-position: center;
+
+}
+
+
+.count_down{
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+
+.chandrayaan{
+    background: transparent;
+    position: absolute;
+    bottom: 50px;
+    left: 38.5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    animation: rocket-lauched 30s linear;
+}
+
+.writing-board{
+    margin:1rem;
+    width: 20rem;
+    display: none;
+    height: 10rem;
+    border: 2px solid rgba(255, 0, 0, 0.363);
+    padding: 1rem;
+    border-radius: 22px;
+    background-color: #00000081;
+}
+
+
+.sate{
+    width: 3rem;
+    height: 3rem;
+}
+
+.sat13{
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    animation: sat13 50s linear infinite both;
+
+}
+
+
+.sat11{
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    animation: sat11 30s infinite both;
+}
+
+.moon{
+    position: absolute;
+    top: 30%;
+    left: 80%;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-image: linear-gradient(rgb(255, 255, 255), rgba(201, 207, 206, 0.87), rgba(148, 148, 143, 0.664));
+}
+
+.sat1{
+    position: absolute;
+    top: 60%;
+    left: 30%;
+    animation: sat1 10s alternate-reverse  infinite both;
+}
+.sat2{
+    position: absolute;
+    top: 70%;
+    left: 30%;
+    animation: sat2 20s alternate-reverse infinite;
+}
+
+.sat5{
+    position: absolute;
+    top: 70%;
+    left: 75%;
+    animation: sat5 40s linear alternate-reverse infinite;
+}
+
+
+.sat4{
+    position: absolute;
+    top: 80%;
+    left: 75%;
+    animation: sat4 10s linear alternate-reverse infinite;
+}
+
+.sat3{
+    position: absolute;
+    top: 90%;
+    left: 30%;
+    animation: sat3 40s linear alternate-reverse infinite;
+    // 60 40
+}
+
+.sat12{
+    position: absolute;
+    top: 90%;
+    left: 55%;
+    animation: sat12 50s alternate-reverse infinite;
+}
+
+
+.sat7{
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    animation: sat7 20s linear alternate-reverse infinite;
+    // 90 25
+
+}
+
+.sat6{
+    position: absolute;
+    top: 70%;
+    left: 25%;
+    animation: sat6 40s linear alternate-reverse infinite;
+}
+
+.sat9{
+    position: absolute;
+    top: 54%;
+    left: 60%;
+    animation: sat9 10s linear alternate-reverse infinite;
+    // 64 45
+}
+
+.sat10{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: sat10 20s linear alternate-reverse infinite;
+}
+
+
+.sat15{
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    animation: sat15 10s linear alternate-reverse infinite;
+}
+.sat8{
+
+    position: absolute;
+    top: 90%;
+    left: 55%;
+    animation: sat8 30s linear alternate-reverse infinite;
+    // 40 35
+
+}
+
+.heading-board{
+    text-align: center;
+    font-size: larger;
+    color: rgb(105, 130, 255);
+}
+.starting-board{
+    display: flex;
+    justify-content: space-between;
+}
+
+.launch{
+    width: 10rem;
+    height: 3rem;
+    padding: 1rem;
+    margin: 1rem;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #02263a;
+    color: white;
+    &:hover{
+        background-color: rgb(53, 80, 199);
+        transition: 1s ease-in-out;
+    }
+}
+
